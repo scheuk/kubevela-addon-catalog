@@ -28,7 +28,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      URL: https://takeoff-com.github.io/kubevela-addon-catalog
+      URL: https://special-adventure-59okg3y.pages.github.io
       GO_VERSION: 1.19
     runs-on: ubuntu-latest
     steps:
