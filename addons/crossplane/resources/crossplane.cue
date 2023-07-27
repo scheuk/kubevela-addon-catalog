@@ -4,6 +4,6 @@ output: {
 		repoType: "helm"
 		url:      "https://charts.crossplane.io/stable"
 		chart:    "crossplane"
-		version:  "1.12.2"
+		version:  context.metadata.version
 	}
 }
