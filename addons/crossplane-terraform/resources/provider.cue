@@ -4,7 +4,7 @@ output: {
     objects: [{
       apiVersion: "pkg.crossplane.io/v1"
       kind: "Provider"
-      metadata: name: "provider-gcp"
+      metadata: name: "provider-terraform"
       spec: {
         package: "xpkg.upbound.io/upbound/provider-terraform:v" + context.metadata.version
         packagePullPolicy: "IfNotPresent"
