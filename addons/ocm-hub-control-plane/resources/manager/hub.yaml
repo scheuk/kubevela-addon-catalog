@@ -3,6 +3,13 @@ kind: ClusterManager
 metadata:
   name: cluster-manager
 spec:
-  registrationImagePullSpec: quay.io/open-cluster-management/registration:v0.6.0
-  workImagePullSpec: quay.io/open-cluster-management/work:v0.6.0
-  placementImagePullSpec: quay.io/open-cluster-management/placement:v0.3.0
+  registrationImagePullSpec: quay.io/open-cluster-management/registration:v0.11.0
+  workImagePullSpec: quay.io/open-cluster-management/work:v0.11.0
+  placementImagePullSpec: quay.io/open-cluster-management/placement:v0.11.0
+  addOnManagerImagePullSpec: quay.io/open-cluster-management/addon-manager:v0.7.1
+  deployOption:
+    mode: Default
+  registrationConfiguration:
+    featureGates:
+    - feature: DefaultClusterSet
+      mode: Enable

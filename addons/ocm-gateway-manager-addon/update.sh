@@ -1,8 +1,8 @@
 #!/bin/bash
 
-RELEASE_CLUSTER_GATEWAY=v1.4.0
-RELEASE_CLUSTER_PROXY=v0.2.2
-RELEASE_MANAGED_SERVICE_ACCOUNT=v0.2.0
+RELEASE_CLUSTER_GATEWAY=v1.9.0-alpha.2
+RELEASE_CLUSTER_PROXY=v0.3.0
+RELEASE_MANAGED_SERVICE_ACCOUNT=v0.3.0
 
 REPO_CLUSTER_PROXY=git@github.com:open-cluster-management-io/cluster-proxy.git
 REPO_MANAGED_SERVICEACCOUNT=git@github.com:open-cluster-management-io/managed-serviceaccount.git

@@ -7,6 +7,6 @@ roleRef:
   kind: ClusterRole
   name: cluster-manager
 subjects:
-  - kind: ServiceAccount
-    name: cluster-manager
-    namespace: open-cluster-management
+- kind: ServiceAccount
+  name: cluster-manager
+  namespace: open-cluster-management

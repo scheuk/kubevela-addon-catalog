@@ -18,10 +18,11 @@ spec:
       serviceAccount: cluster-proxy
       containers:
         - name: manager
-          image: quay.io/open-cluster-management/cluster-proxy:v0.2.2
+          image: quay.io/open-cluster-management/cluster-proxy:v0.3.0
           imagePullPolicy: IfNotPresent
           command:
             - /manager
           args:
             - --leader-elect=true
             - --signer-secret-namespace=open-cluster-management-addon
+            - --agent-install-all=true
