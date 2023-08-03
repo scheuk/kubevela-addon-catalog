@@ -1,4 +1,4 @@
-name: ocm-gateway-manager-addon
+name: tkf-ocm-gateway-manager-addon
 version: 1.9.0-alpha.2
 description: ocm-gateway-manager-addon is the OCM addon automates the cluster-gateway apiserver.
 icon: https://github.com/open-cluster-management-io/OCM/raw/main/assets/ocm-logo.png
