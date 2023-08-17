@@ -1,5 +1,5 @@
 name: crossplane-terraform
-version: 0.9.0
+version: 0.10.0
 description: Terraform Provider for Crossplane
 icon: https://static.kubevela.net/images/logos/aws.png
 url: https://crossplane.io/
