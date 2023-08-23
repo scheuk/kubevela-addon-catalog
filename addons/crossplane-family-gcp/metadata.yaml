@@ -1,0 +1,15 @@
+name: crossplane-family-gcp
+version: 0.36.0
+description: GCP Provider for Crossplane
+icon: https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png
+url: https://crossplane.io/
+
+tags:
+  - Crossplane provider
+
+deployTo:
+  control_plane: true
+  runtime_cluster: false
+
+dependencies:
+- name: crossplane
