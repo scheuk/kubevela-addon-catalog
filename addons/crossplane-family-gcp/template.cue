@@ -1,5 +1,11 @@
 package main
 
+_includeControllerConfig: *false | bool
+
+if parameter.gcpSaEmail != _|_ || parameter.args != _|_ {
+	_includeControllerConfig: true
+}
+
 output: {
 	apiVersion: "core.oam.dev/v1beta1"
 	kind:       "Application"
@@ -7,6 +13,10 @@ output: {
 		namespace: const.namespace
 	}
 	spec: {
-		components: [providers]
+		components: [
+			familyProvider,
+			providers,
+			if _includeControllerConfig {controllerConfig},
+		]
 	}
 }
