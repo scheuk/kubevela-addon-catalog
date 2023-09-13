@@ -11,12 +11,26 @@ template: {
 		apiVersion: "gcp.upbound.io/v1beta1"
 		kind:       "ProviderConfig"
 		metadata:
-			name: context.name
+			name: parameter.projectId
 		spec: {
-			projectID: context.name
-			credentials: source: "InjectedIdentity"
+			projectID: parameter.projectId
+			if parameter.impersonateServiceAccount == _|_ {
+				credentials: source: "InjectedIdentity"
+			}
+			if parameter.impersonateServiceAccount != _|_ {
+				credentials: {
+					source: "ImpersonateServiceAccount"
+					impersonateServiceAccount: name: parameter.impersonateServiceAccount
+				}
+			}
 		}
 	}
 
-	parameter: {}
+	parameter: {
+		//+usage=GCP project ID to operator on
+		projectId: string
+		//+usage=GCP ServiceAccount to impersonate
+		impersonateServiceAccount: string
+	}
 }
+

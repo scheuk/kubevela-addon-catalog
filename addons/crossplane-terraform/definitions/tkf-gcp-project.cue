@@ -3,7 +3,14 @@ import "strings"
 "tkf-gcp-project": {
 	type:        "component"
 	description: "Create google project in the environment"
-	attributes: workload: type: "autodetects.core.oam.dev"
+	attributes: {
+		workload: type: "autodetects.core.oam.dev"
+		status: {
+			healthPolicy: #"""
+			isHealth: len(context.output.status.conditions) != 0 && context.output.status.conditions[0]["status"]=="True"
+			"""#
+		}
+	}
 }
 
 template: {
@@ -17,12 +24,16 @@ template: {
 					"-backend-config=prefix=\(context.namespace)/\(context.name)"
 				]
 				source: "Remote"
-				module: "github.com/takeoff-com/on-demand-env.git//terraform/modules"
+				module: "github.com/takeoff-com/on-demand-env.git//terraform/modules?ref=PROD-11065-deploy-tote-manager"
 				entrypoint: "project"
 				vars: [
 					{
 						key: "name"
 						value: context.name
+					},
+					{
+						key: "impersonate_project_sa"
+						value: "true"
 					}
 				]
 				varFiles: [
