@@ -14,7 +14,7 @@ template: {
       providerConfigRef: name: parameter.providerConfigRef
 			forProvider:
 				initArgs: [
-					-backend-config="prefix=\(context.name)"
+					"-backend-config=prefix=\(context.namespace)/\(context.name)"
 				]
 				source: parameter.source
 				module: parameter.module

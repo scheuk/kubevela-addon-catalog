@@ -26,16 +26,13 @@ template: {
 				source: "Remote"
 				module: "github.com/takeoff-com/on-demand-env.git//terraform/modules?ref=PROD-11065-deploy-tote-manager"
 				entrypoint: "project"
-				vars: [
-					{
-						key: "name"
-						value: context.name
-					},
-					{
-						key: "impersonate_project_sa"
-						value: "true"
+				varmap: {
+					name: context.name
+					impersonate_project_sa: true
+					if parameter.activateApis != _|_ {
+						activate_apis: parameter.activateApis
 					}
-				]
+				}
 				varFiles: [
 					{
 						format: "JSON"
@@ -52,7 +49,9 @@ template: {
 	}
 
 	parameter: {
-		//+usage= ProviderConfig to use
+		//+usage=ProviderConfig to use
 		providerConfigRef: string
+		//+usage=APIs to activate
+		activateApis?: [...string]
 	}
 }
