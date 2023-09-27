@@ -1,4 +1,4 @@
-"gcp-ProjectIAMMember": {
+"gcp-projectiammember": {
 	alias: ""
 	annotations: {}
 	attributes: workload: definition: {
