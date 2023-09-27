@@ -11,7 +11,7 @@ template: {
 		apiVersion: "gcp.upbound.io/v1beta1"
 		kind:       "ProviderConfig"
 		metadata:
-			name: parameter.projectId
+			name: context.name
 		spec: {
 			projectID: parameter.projectId
 			if parameter.impersonateServiceAccount == _|_ {
