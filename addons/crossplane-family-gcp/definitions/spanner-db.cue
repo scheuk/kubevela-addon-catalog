@@ -1,9 +1,14 @@
 "gcp-spanner-db": {
 	alias: ""
 	annotations: {}
-	attributes: workload: definition: {
+	attributes: {
+	  status: healthPolicy: #"""
+			isHealth: len(context.output.status.atProvider) != 0 && context.output.status.conditions[0]["status"]=="True"
+			"""#
+		workload: definition: {
 		apiVersion: "spanner.gcp.upbound.io/v1beta1"
 		kind:       "Database"
+		}
 	}
 	description: ""
 	labels: {}

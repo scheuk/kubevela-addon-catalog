@@ -1,4 +1,4 @@
-"gcp-spanner-instance": {
+"gcp-spanner-databaseiammember": {
 	alias: ""
 	annotations: {}
 	attributes: {
@@ -7,10 +7,10 @@
 			"""#
 		workload: definition: {
 		apiVersion: "spanner.gcp.upbound.io/v1beta1"
-		kind:       "Instance"
+		kind:       "DatabaseIAMMember"
 		}
 	}
-	description: "Deploy a spanner instance"
+	description: "GCP Pub/Sub Topic IAMMember resource"
 	labels: {}
 	type: "component"  
 }
@@ -18,26 +18,28 @@
 template: {
 	output: {
 		apiVersion: "spanner.gcp.upbound.io/v1beta1"
-		kind:       "Instance"
+		kind:       "DatabaseIAMMember"
 		spec: {
       providerConfigRef: name: parameter.providerConfigName
       forProvider: {
-        config:          parameter.config
-        displayName:     context.name
-        forceDestroy:    parameter.forceDestroy
-        processingUnits: parameter.processingUnits
-		  }
+				member: parameter.member
+				role: parameter.role
+				instance: parameter.instance
+				database: parameter.database
+			}
     }
 	}
 	outputs: {}
 	parameter: {
     // +usage=Providerconfig for this instance
     providerConfigName: string
-    // +usage=Location configuration for spanner instance
-    config: *"regional-us-central1" | string
-    // +usage=Processing units for this instances
-    processingUnits: *100 | int
+    // +usage=Principal to assign role to (user,group,serviceaccount)
+    member: string
+		// +usage=Spanner Instance Name
+		instance: string
+		// +usage=Spanner Database Name
+		database: string
     // +usage=Force destroy
-    forceDestroy: *false | bool
+    role: *"roles/spanner.databaseUser" | string
   }
 }

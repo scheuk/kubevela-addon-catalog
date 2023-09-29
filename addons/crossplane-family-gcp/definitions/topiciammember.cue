@@ -1,32 +1,31 @@
-"gcp-projectiammember": {
+"gcp-topiciammember": {
 	alias: ""
 	annotations: {}
 	attributes: {
-		status: healthPolicy: #"""
+	  status: healthPolicy: #"""
 			isHealth: len(context.output.status.atProvider) != 0 && context.output.status.conditions[0]["status"]=="True"
 			"""#
 		workload: definition: {
-			apiVersion: "cloudplatform.gcp.upbound.io/v1beta1"
-			kind:       "ProjectIAMMember"
+		apiVersion: "pubsub.gcp.upbound.io/v1beta1"
+		kind:       "TopicIAMMember"
 		}
 	}
-	description: "Project IAM Member resource"
+	description: "GCP Pub/Sub Topic IAMMember resource"
 	labels: {}
 	type: "component"  
-
 }
 
 template: {
 	output: {
-		apiVersion: "cloudplatform.gcp.upbound.io/v1beta1"
-		kind:       "ProjectIAMMember"
+		apiVersion: "pubsub.gcp.upbound.io/v1beta1"
+		kind:       "TopicIAMMember"
 		spec: {
       providerConfigRef: name: parameter.providerConfigName
       forProvider: {
-        member:          parameter.member
-				project:         parameter.project
-				role: 					 parameter.role
-		  }
+				member: parameter.member
+				role: parameter.role
+				topicRef: name: parameter.topic
+			}
     }
 	}
 	outputs: {}
@@ -36,8 +35,8 @@ template: {
     // +usage=Principal to assign role to (user,group,serviceaccount)
     member: string
     // +usage=Processing units for this instances
-    project: string
+    topic: string
     // +usage=Role to assign to member
-    role: string
+    role: *"roles/pubsub.publisher" | string
   }
 }
