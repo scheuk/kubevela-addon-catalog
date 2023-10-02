@@ -1,6 +1,8 @@
+import "strconv"
+
 "gcp-cloudrun-service": {
 	type:        "component"
-	description: "GCP CloudRun V2Service"
+	description: "GCP CloudRun Service"
 	attributes: { 
 		workload: {
 			type: "autodetects.core.oam.dev"
@@ -34,11 +36,30 @@ template: {
 		spec: {
 			forProvider: {
 				location: "us-central1"
+				metadata: [{
+					if parameter.ingressType != _|_ {
+						annotations: "run.googleapis.com/ingress": parameter.ingressType
+					}
+				}]
 				template: [{
+					metadata: [{
+						if parameter.maxInstances != _|_ {
+							annotations: "autoscaling.knative.dev/maxScale": strconv.FormatInt(parameter.maxInstances, 10)
+						}
+					}]
 					spec: [{
 						containers: [{
 							image: parameter.image
+							if parameter.env != _|_ {
+								env: parameter.env
+							}
 						}]
+						if parameter.containerConcurrency != _|_ {
+							containerConcurrency: parameter.containerConcurrency
+						}
+						if parameter.serviceAccount != _|_ {
+							serviceAccountName: parameter.serviceAccount
+						}
 					}]
 				}]
 				traffic: [{
@@ -46,10 +67,13 @@ template: {
 					percent: 100
 				}]
 			}
-			providerConfigRef: {
-				name: parameter.providerConfigName
-			}
+			providerConfigRef: name: parameter.providerConfigName
 		}
+	}
+
+	#Env: {
+		name:  string
+		value: string
 	}
 
 	parameter: {
@@ -57,5 +81,16 @@ template: {
 		image: string
 		// +usage=The ProviderConfig name
 		providerConfigName: *"gcp" | string
+		// +usage=Env variables to pass to the image
+		env?: [...#Env]
+		// +usage=Container Concurrency
+		containerConcurrency?: int
+		// +usage=Max Instanances
+		maxInstances?: int
+		// +usage=ServiceAccount name for this service
+		serviceAccount?: string
+		// +usage=Ingress restriction type (all,internal,internal-and-cloud-load-balancing)
+		// ingressType?: "all","internal","internal-and-cloud-load-balancing"
+		ingressType?: string
 	}
 }
