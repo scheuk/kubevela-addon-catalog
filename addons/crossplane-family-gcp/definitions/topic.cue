@@ -1,3 +1,5 @@
+import "strings"
+
 "gcp-topic": {
 	alias: ""
 	annotations: {}
@@ -22,6 +24,10 @@ template: {
 	output: {
 		apiVersion: "pubsub.gcp.upbound.io/v1beta1"
 		kind:       "Topic"
+		metadata: {
+			annotations: "crossplane.io/external-name": context.name
+			name: strings.Replace(context.name, ".", "-", -1)
+		}
 		spec: {
       providerConfigRef: name: parameter.providerConfigName
       forProvider: displayName: context.name
