@@ -4,7 +4,10 @@ import "strings"
 	type:        "component"
 	description: "Create google project in the environment"
 	attributes: {
-		workload: type: "autodetects.core.oam.dev"
+		workload: definition: {
+			apiVersion: "tf.upbound.io/v1beta1"
+			kind:       "Workspace"
+		}
 		status: {
 			healthPolicy: #"""
 			isHealth: len(context.output.status.conditions) != 0 && context.output.status.conditions[0]["status"]=="True"

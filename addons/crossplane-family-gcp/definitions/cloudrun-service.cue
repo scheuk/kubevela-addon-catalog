@@ -35,7 +35,7 @@ template: {
 		}
 		spec: {
 			forProvider: {
-				location: "us-central1"
+				location: parameter.location
 				metadata: [{
 					if parameter.ingressType != _|_ {
 						annotations: "run.googleapis.com/ingress": parameter.ingressType
@@ -81,6 +81,8 @@ template: {
 		image: string
 		// +usage=The ProviderConfig name
 		providerConfigName: *"gcp" | string
+		// +usage=Cloud run Region
+		location: *"us-central1" | string
 		// +usage=Env variables to pass to the image
 		env?: [...#Env]
 		// +usage=Container Concurrency
