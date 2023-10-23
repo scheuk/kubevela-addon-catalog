@@ -23,19 +23,38 @@ import "strings"
 template: {
 	output: {
 		apiVersion: "pubsub.gcp.upbound.io/v1beta1"
+		kind:       "TopicIAMMember"
+		metadata: name: parameter.metadataname
+		spec: {
+      providerConfigRef: name: parameter.providerConfigName
+      forProvider: {
+				member: parameter.member
+				role: parameter.role
+				topicRef: name: parameter.metadataname
+			}
+    }
+	}
+	outputs: topic: {
+		apiVersion: "pubsub.gcp.upbound.io/v1beta1"
 		kind:       "Topic"
 		metadata: {
 			annotations: "crossplane.io/external-name": context.name
-			name: strings.Replace(context.name, ".", "-", -1)
+			name: parameter.metadataname
 		}
 		spec: {
       providerConfigRef: name: parameter.providerConfigName
       forProvider: displayName: context.name
     }
 	}
-	outputs: {}
+
 	parameter: {
     // +usage=Providerconfig for this instance
     providerConfigName: string
+    // +usage=Principal to assign role to (user,group,serviceaccount)
+    member: string
+    // +usage=Role to assign to member, defaults to roles/pubsub.publisher
+    role: *"roles/pubsub.publisher" | string
+		// need to not have . in the k8s object name
+		metadataname: *strings.Replace(context.name, ".", "-", -1) | string
   }
 }

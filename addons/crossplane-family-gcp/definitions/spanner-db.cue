@@ -23,12 +23,25 @@ template: {
 			forProvider: {
 				databaseDialect: parameter.databaseDialect
 				deletionProtection: parameter.deletionProtection
-				instanceRef: name: parameter.instanceName
+				instanceRef: name: parameter.instance
 				versionRetentionPeriod: parameter.versionRetentionPeriod
 			}
 			providerConfigRef: name: parameter.providerConfigName
 		}
 	}
+	outputs: iam: {
+		apiVersion: "spanner.gcp.upbound.io/v1beta1"
+		kind:       "DatabaseIAMMember"
+		spec: {
+      providerConfigRef: name: parameter.providerConfigName
+      forProvider: {
+				member: parameter.member
+				role: parameter.role
+				instance: parameter.instance
+				database: context.name
+			}
+    }
+	}	
 
 	parameter: {
 		// +usage=Providerconfig for this instance
@@ -39,7 +52,11 @@ template: {
 		deletionProtection: *false | bool
 		// +usage=Version Retention period
 		versionRetentionPeriod: *"1d" | string
-		// +usage=Instance Name
-		instanceName: string
+		// +usage=Spanner Instance Name
+		instance: string
+    // +usage=Principal to assign role to (user,group,serviceaccount)
+    member: string
+    // +usage=Role to assign to member, defaults to roles/spanner.databaseUser
+    role: *"roles/spanner.databaseUser" | string
 	}
 }
