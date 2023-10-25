@@ -11,7 +11,8 @@ deployTo:
   control_plane: true
   runtime_cluster: false
 
-# dependencies:
+dependencies:
+    - name: fluxcd-definitions
 #   - name: fluxcd
 
 invisible: false

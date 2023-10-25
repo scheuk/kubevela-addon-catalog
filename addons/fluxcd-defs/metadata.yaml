@@ -1,0 +1,14 @@
+name: fluxcd-definitions
+version: 1.0.0
+description: Kubevela component definitions for fluxcd resources
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/flux/horizontal/color/flux-horizontal-color.png
+url: https://fluxcd.io
+
+tags:
+  - Official
+  - Extended Workload
+  - GitOps
+  - Helm
+
+system:
+  vela: ">=1.9.0-alpha.2"
