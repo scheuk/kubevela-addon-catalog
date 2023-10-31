@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/Masterminds/semver/v3 v3.2.1
 	github.com/Masterminds/sprig/v3 v3.2.3
-	github.com/fatih/color v1.13.0
+	github.com/fatih/color v1.15.0
 	github.com/go-yaml/yaml v2.1.0+incompatible
 	github.com/oam-dev/kubevela-core-api v1.5.2
 	github.com/oam-dev/terraform-controller v0.4.6
