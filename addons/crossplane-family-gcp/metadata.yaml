@@ -1,5 +1,5 @@
 name: crossplane-family-gcp
-version: 0.37.0
+version: 0.38.0
 description: GCP Provider for Crossplane
 icon: https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png
 url: https://crossplane.io/
