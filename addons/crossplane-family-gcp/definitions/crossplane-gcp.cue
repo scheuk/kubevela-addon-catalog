@@ -27,7 +27,7 @@ template: {
 	}
 
 	parameter: {
-		//+usage=GCP project ID to operator on
+		//+usage=GCP project ID to operate on
 		projectId: string
 		//+usage=GCP ServiceAccount to impersonate
 		impersonateServiceAccount: string
