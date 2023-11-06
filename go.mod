@@ -10,7 +10,7 @@ require (
 	github.com/oam-dev/kubevela-core-api v1.7.7
 	github.com/oam-dev/terraform-controller v0.7.0
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.27.10
+	github.com/onsi/gomega v1.29.0
 	github.com/pkg/errors v0.9.1
 	helm.sh/helm/v3 v3.13.1
 	k8s.io/apimachinery v0.28.3
@@ -63,7 +63,7 @@ require (
 	github.com/google/btree v1.0.1 // indirect
 	github.com/google/cel-go v0.16.1 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/google/uuid v1.3.0 // indirect
