@@ -8,7 +8,7 @@ require (
 	github.com/fatih/color v1.15.0
 	github.com/go-yaml/yaml v2.1.0+incompatible
 	github.com/oam-dev/kubevela-core-api v1.7.7
-	github.com/oam-dev/terraform-controller v0.7.0
+	github.com/oam-dev/terraform-controller v0.8.0
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.27.10
 	github.com/pkg/errors v0.9.1
