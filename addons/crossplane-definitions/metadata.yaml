@@ -1,0 +1,11 @@
+name: crossplane-definitions
+version: 1.0.0
+description: crossplane component definitions for crossplane resources
+url: https://crossplane.io/
+
+tags:
+  - IaC
+  - cloud resource
+  
+system:
+  vela: ">=1.9.0-alpha.2"
